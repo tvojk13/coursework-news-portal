@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    background-color: white;
+    padding: 0px 300px 0px 300px;
+    font-family: Arial;
+}
+
+.nav-bar {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.nav-bar li {
+    padding: 0px;
+    list-style: none;
+    margin-top: 5px;
+
+}
+
+.nav-bar li a {
+    font-weight: bold;
+    color: rgba(50, 50, 50, 0.85);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.nav-bar li a:hover {
+    color: rgba(50, 50, 50, 1);
+    transition: all 0.2s;
+}
+
+.main-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-bar-news {
+    background-color: white;
+    height: 500px;
+    width: 250px;
+    display:inline;
+    float:left;
+
+}
+.top-of-the-day-header {
+    font-size: 21px;
+    color: rgb(200, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.central-bar-news {
+    background-color: white;
+    height: 500px;
+    width: 700px;
+    margin: 0 0 0 50px;
+    display:inline;
+    float:left;
+}
+
+.important-news-header {
+    font-size: 21px;
+    color: rgb(200, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.right-bar-news {
+    background-color: white;
+    height: 500px;
+    width: 250px;
+    margin: 0 0 0 50px;
+    display:inline;
+    float:left;
+}
+
+.news-feed-header {
+    font-size: 21px;
+    color: rgb(200, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+

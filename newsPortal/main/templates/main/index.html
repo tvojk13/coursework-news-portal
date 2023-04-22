@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {%load static%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'main/css/styles.css'%}">
+    <title>News portal</title>
+</head>
+<body>
+    <header class="header">
+        <div class="menu">
+            <ul class="nav-bar">
+                <li>
+                    <a href="/world">Мир</a>
+                </li>
+                <li>
+                    <a href="/sport">Спорт</a>
+                </li>
+                <li>
+                    <a href="/culture">Культура</a>
+                </li>
+                <li>
+                    <a href="/photos">Фото</a>
+                </li>
+                <li>
+                    <a href="/cinema">Кино</a>
+                </li>
+                <li>
+                    <a href="/exclusive-news">Экслюзивы</a>
+                </li>
+                <li>
+                    <a href="/about">Редакция</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="main-page">
+        <div class="left-bar-news">
+            <selection class="top-of-the-day">
+                <h1 class="top-of-the-day-header">Главное за день</h1>
+            </selection>
+
+        </div>
+
+        <div class="central-bar-news">
+            <selection class="important-news">
+                <h1 class="important-news-header">Важное</h1>
+            </selection>
+        </div>
+
+        <div class="right-bar-news">
+            <selection class="news-feed">
+                <h1 class="news-feed-header">Новостная лента</h1>
+            </selection>
+        </div>
+    </main>
+</body>
+</html>
