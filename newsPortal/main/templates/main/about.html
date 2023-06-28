@@ -1,0 +1,26 @@
+{% include 'main\base.html' %}
+    <body>
+        <div class="info">
+            <h>Добро пожаловать на сайт. Пожалуйста, обратите внимание, что данный веб-сайт является частью моего курсового проекта и все новости, статьи и материалы, представленные здесь, полностью вымышлены. Они созданы с целью демонстрации моих навыков и креативности в рамках учебного задания. Я призываю вас не принимать информацию на данном сайте за реальные факты или события.</h>
+        </div>
+        <div class="right-bar-news">
+            <selection class="news-feed">
+                <h1 class="news-feed-header">Новостная лента</h1>
+                {% block rightBarNews %}
+                    {% for item in rightBarNews %}
+                        {% if item.published %}
+                            <p>
+                            <div class="news-feed-header-category">
+                                <a href="{% url item.categoryKey.categoryNameENG %}">{{ item.categoryKey.categoryNameRU }}</a> | {{ item.date|date:'d.m, H:i' }}<br>
+                            </div>
+                            <div class="news-feed-header-link">
+                                <a href="{{ item.get_absolute_url }}">{{ item.header }}</a>
+                            </div>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            </selection>
+        </div>
+    </body>
+</html>

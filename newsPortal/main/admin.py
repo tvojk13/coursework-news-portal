@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('header',)}
+    list_display = ('header', 'categoryKey', 'date', 'published')
+admin.site.register(News, NewsAdmin)
 
 # Register your models here.

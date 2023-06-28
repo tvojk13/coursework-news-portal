@@ -1,0 +1,49 @@
+{% include 'main\base.html' %}
+{% load static %}
+    <body>
+        <main class="main-page">
+            <div class="main-news">
+                {% block mainContent %}
+                    {% for news in content %}
+                        <div class="section-page">
+                            <div class="section-page-header">
+                                <h>{{ news.header }}</h>
+                            </div>
+                            <div class="section-page-date">
+                                <p>{{ news.date }} | {{news.categoryKey.categoryNameRU}}</p>
+                            </div>
+                                {% if news.picture %}
+                                    <div class="section-page-pic">
+                                        <img src="{% static news.picture %}">
+                                    </div>
+                                {% endif %}
+                            <div class="section-page-article">
+                                <p>{{ news.article }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+            </div>
+            <div class="right-bar-news">
+                <selection class="news-feed">
+                    <h1 class="news-feed-header">Новостная лента</h1>
+                    {% block rightBarNews %}
+                        {% for item in rightBarNews %}
+                            {% if item.published %}
+                                <p>
+                                    <div class="news-feed-header-category">
+                                        <a href="{% url item.categoryKey.categoryNameENG %}">{{ item.categoryKey.categoryNameRU }}</a> | {{ item.date|date:'d.m, H:i' }}<br>
+                                    </div>
+
+                                    <div class="news-feed-header-link">
+                                        <a href="{{ item.get_absolute_url }}">{{ item.header }}</a>
+                                    </div>
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endblock %}
+                </selection>
+            </div>
+        </main>
+    </body>
+</html>

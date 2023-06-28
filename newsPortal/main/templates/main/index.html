@@ -1,63 +1,80 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {%load static%}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{%static 'main/css/styles.css'%}">
-    <title>News portal</title>
-</head>
-<body>
-    <header class="header">
-        <div class="menu">
-            <ul class="nav-bar">
-                <li>
-                    <a href="/world">Мир</a>
-                </li>
-                <li>
-                    <a href="/sport">Спорт</a>
-                </li>
-                <li>
-                    <a href="/culture">Культура</a>
-                </li>
-                <li>
-                    <a href="/photos">Фото</a>
-                </li>
-                <li>
-                    <a href="/cinema">Кино</a>
-                </li>
-                <li>
-                    <a href="/exclusive-news">Экслюзивы</a>
-                </li>
-                <li>
-                    <a href="/about">Редакция</a>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <main class="main-page">
-        <div class="left-bar-news">
-            <selection class="top-of-the-day">
-                <h1 class="top-of-the-day-header">Главное за день</h1>
-                {% include 'main/newsinclude.html' %}
-            </selection>
+{% include 'main\base.html' %}
+{% load static %}
+    <body>
+        <main class="main-page">
+            <div class="left-bar-news">
+                <selection class="top-of-the-day">
+                    <h1 class="top-of-the-day-header">Главное за день</h1>
+                    {% block leftBarNews %}
+                        {% for item in topToday %}
+                            {% if item.published %}
+                                <div class="top-of-the-day-block">
+                                    <p>
+                                        <div class="top-of-the-day-header-category">
+                                            <a href="{% url item.categoryKey.categoryNameENG %}">{{ item.categoryKey.categoryNameRU }}</a> | {{ item.date|date:'H:i' }}<br>
+                                        </div>
 
-        </div>
+                                        <div class="top-of-the-day-news-header-link">
+                                            <a href="{{ item.get_absolute_url }}">{{ item.header }}</a>
+                                        </div>
+                                    </p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endblock %}
+                </selection>
+            </div>
 
-        <div class="central-bar-news">
-            <selection class="important-news">
-                <h1 class="important-news-header">Важное</h1>
-            </selection>
-        </div>
+            <div class="central-bar-news">
+                <selection class="important-news">
+                    <h1 class="important-news-header">Важное</h1>
+                    {% block centralBarNews %}
+                        {% for item in content %}
+                            {% if item.published and item.important %}
+                                <div class="important-news-block">
+                                    <p>
+                                        <div class="important-news-header-category">
+                                            <a href="{% url item.categoryKey.categoryNameENG %}">{{ item.categoryKey.categoryNameRU }}</a> | {{ item.date|date:'d.m, H:i' }}<br>
+                                        </div>
 
-        <div class="right-bar-news">
-            <selection class="news-feed">
-                <h1 class="news-feed-header">Новостная лента</h1>
-            </selection>
-        </div>
-    </main>
-</body>
+                                        <div class="important-news-header-link">
+                                            <a href="{{ item.get_absolute_url }}">{{ item.header }}</a>
+                                        </div>
+                                        {% if item.picture != null %}
+                                            <div class="important-news-header-pic">
+                                                <img src="{% static item.picture %}">
+                                            </div>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endblock %}
+                </selection>
+            </div>
+
+            <div class="right-bar-news">
+                <selection class="news-feed">
+                    <h1 class="news-feed-header">Новостная лента</h1>
+                    {% block rightBarNews %}
+                        {% for item in content %}
+                            {% if item.published %}
+                                <div class="news-feed-block">
+                                    <p>
+                                        <div class="news-feed-header-category">
+                                            <a href="{% url item.categoryKey.categoryNameENG %}">{{ item.categoryKey.categoryNameRU }}</a> | {{ item.date|date:'d.m, H:i' }}<br>
+                                        </div>
+
+                                        <div class="news-feed-header-link">
+                                            <a href="{{ item.get_absolute_url }}">{{ item.header }}</a>
+                                        </div>
+                                    </p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endblock %}
+                </selection>
+            </div>
+        </main>
+    </body>
 </html>

@@ -1,7 +1,0 @@
-{% block newsHeader %}
-    {% for item in content %}
-        {% if item.published %}
-            <p>{{ item.date|date:'H:i' }}<br>{{ item.header }}</p>
-        {% endif %}
-    {% endfor %}
-{% endblock %}
